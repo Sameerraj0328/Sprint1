@@ -1,0 +1,4 @@
+F001:Column values in BOM reports are incorrect:Aircraft design:BOM report:21/08/2022:open:FATAL:Banking Transactions,Since 07:30 AM 
+F002:Unit prices are not shown while preparing invoice:Invoices:Display products:23/04/2022:close:FATAL:Banking Transactions,Since 07:30 AM
+N001:BOM report columns not alligned properly:Aircraft design:BOM report:21/08/2022:open:NICETOHAVE:12.3.0,7"
+

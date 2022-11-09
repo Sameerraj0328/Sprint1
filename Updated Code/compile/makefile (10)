@@ -1,0 +1,35 @@
+
+SRC=src
+INCLUDE=include
+OBJ=obj
+BIN=bin
+
+INCLUDEFLAGS=-I$(INCLUDE)
+CPPF= -ansi -c -g -Wall -std=c++11 -DDEBUG $(INCLUDEFLAGS)
+
+main:defect.o defectread.o main.o program.o programread.o
+	g++ -o $(BIN)/main $(OBJ)/main.o  $(OBJ)/defectread.o $(OBJ)/defect.o $(OBJ)/program.o $(OBJ)/programread.o
+
+defect.o:$(SRC)/defect.cpp
+	g++ -o $(OBJ)/defect.o $(CPPF) $(SRC)/defect.cpp
+
+defectread.o:$(SRC)/defectread.cpp
+	g++ -o $(OBJ)/defectread.o $(CPPF) $(SRC)/defectread.cpp
+program.o:$(SRC)/Programmer.cpp
+	g++ -o $(OBJ)/program.o $(CPPF) $(SRC)/Programmer.cpp
+
+programread.o:$(SRC)/Programmerread.cpp
+	g++ -o $(OBJ)/programread.o $(CPPF) $(SRC)/Programmerread.cpp
+
+
+main.o:$(SRC)/main.cpp
+	g++ -o $(OBJ)/main.o  $(CPPF) $(SRC)/main.cpp
+valgrind: $(BIN)/main
+	valgrind --leak-check=full --show-reachable=yes $(BIN)/main 2>$(VALGRIND)/valgrind.txt
+
+
+clean:
+	echo "cleaning"
+	rm -f $(BIN)/main $(OBJ)/main.o $(OBJ)/defect.o $(OBJ)/defectread.o  $(OBJ)/program.o $(OBJ)/programread.o
+		rm -f $(TOOLS)/valgrind.txt
+
